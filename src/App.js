@@ -1,31 +1,23 @@
 import React, { Component } from 'react';
+import MapContainer from './components/MapContainer'
 import './App.css';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      location: {
-        lat: null,
-        lng: null
-      },
       data: [],
       loading: true
     }
   }
 
   componentDidMount() {
-    // get coords
     this.getCoordinates();
-    // reverse geocode coords into postal code
-    // this.apiPostalCode();
-    // this.apiPetfinder();
   }
 
   getCoordinates() {
     navigator.geolocation.getCurrentPosition((position) => {
       var location = {lat: position.coords.latitude, lng: position.coords.longitude}
-      // this.setState({ location })
       this.apiPostalCode(location)
     })
   }
@@ -53,7 +45,7 @@ class App extends Component {
     console.log(this.state)
     return (
       <div className="App">
-        hello world
+        <MapContainer />
       </div>
     );
   }
