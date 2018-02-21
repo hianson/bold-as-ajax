@@ -52,7 +52,7 @@ class App extends Component {
     this.setState({ data: data, loading: false})
   }
 
-  setAnimalData(data) {
+  handlePetData(data) {
     console.log('setting animal data')
     if (data) {
       this.setState({ animals: data })
@@ -64,7 +64,7 @@ class App extends Component {
     console.log('app', this.state.animals)
     return (
       <div style={style}>
-        <MapContainer setAnimalData={this.setAnimalData.bind(this)} location={this.state.location} data={this.state.data}/>
+        <MapContainer handlePetData={this.handlePetData.bind(this)} location={this.state.location} data={this.state.data}/>
         <ListContainer animals={this.state.animals}/>
       </div>
     );

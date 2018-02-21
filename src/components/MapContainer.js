@@ -39,7 +39,7 @@ export class Container extends React.Component {
     // if (data) {
     //   console.log(data)
     // }
-    this.props.setAnimalData(data);
+    this.props.handlePetData(data);
     // // map over results and return array with necessary info
     //
     //
