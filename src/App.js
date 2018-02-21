@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MapContainer from './components/MapContainer'
-import './App.css';
+import ListContainer from './components/ListContainer'
 
 class App extends Component {
   constructor() {
@@ -55,11 +55,18 @@ class App extends Component {
   render() {
     // console.log('app', this.state.data)
     return (
-      <div className="App">
+      <div style={style}>
         <MapContainer location={this.state.location} data={this.state.data}/>
+        <ListContainer />
       </div>
     );
   }
+}
+
+const style = {
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '20px'
 }
 
 export default App;
