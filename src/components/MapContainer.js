@@ -25,7 +25,6 @@ export class Container extends React.Component {
     return (
       <div>
         <Map
-          style={style}
           google={this.props.google}
           location={this.props.location}
           data={this.props.data}
@@ -36,12 +35,6 @@ export class Container extends React.Component {
       </div>
     )
   }
-}
-
-const style = {
-  width: '75vw',
-  height: '75vh',
-  margin: '40px auto 20px auto'
 }
 
 export default GoogleApiWrapper({

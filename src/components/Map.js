@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 export class Map extends React.Component {
 
   componentDidMount() {
     this.loadMap();
   }
 
-  // componentDidUpdate() {
-  //   if (this.props.location.lat && this.props.location.lng) {
-  //     this.map.panTo({lat: this.props.location.lat, lng: this.props.location.lng})
-  //   }
-  // }
+  componentDidUpdate() {
+    if (this.props.location.lat && this.props.location.lng) {
+      this.map.panTo({lat: this.props.location.lat, lng: this.props.location.lng})
+    }
+  }
 
   loadMap() {
     if (this.props && this.props.google) {
@@ -21,7 +22,7 @@ export class Map extends React.Component {
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
 
-      let zoom = 14;
+      let zoom = 12;
       let lat = this.props.location.lat;
       let lng = this.props.location.lng;
       const center = new maps.LatLng(lat, lng);
@@ -58,9 +59,9 @@ export class Map extends React.Component {
 }
 
 const style = {
-  width: '75vw',
+  width: '55vw',
   height: '75vh',
-  margin: '40px auto 20px auto'
+  // margin: '40px auto 20px auto'
 }
 
 export default Map;
