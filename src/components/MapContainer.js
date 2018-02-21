@@ -23,9 +23,6 @@ export class Container extends React.Component {
   }
 
   onMarkerClick(e) {
-    // get shelter data from petfinder api using marker's shelter id?
-    console.log('getting shelter data')
-    console.log(e.id)
     this.getPetData(e.id)
   }
 
