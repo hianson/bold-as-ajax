@@ -30,9 +30,4 @@ export class Marker extends React.Component {
   }
 }
 
-// Marker.propTypes = {
-//   position: React.PropTypes.object,
-//   map: React.PropTypes.object
-// }
-
 export default Marker;
