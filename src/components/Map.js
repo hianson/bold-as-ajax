@@ -6,11 +6,11 @@ export class Map extends React.Component {
     this.loadMap();
   }
 
-  componentDidUpdate() {
-    if (this.props.location.lat && this.props.location.lng) {
-      this.map.panTo({lat: this.props.location.lat, lng: this.props.location.lng})
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.props.location.lat && this.props.location.lng) {
+  //     this.map.panTo({lat: this.props.location.lat, lng: this.props.location.lng})
+  //   }
+  // }
 
   loadMap() {
     if (this.props && this.props.google) {
@@ -33,10 +33,25 @@ export class Map extends React.Component {
     }
   }
 
+  renderChildren() {
+    const {children} = this.props;
+
+    if (!children) return;
+
+    return React.Children.map(children, c => {
+      return React.cloneElement(c, {
+        map: this.map,
+        google: this.props.google,
+        mapCenter: this.props.currentLocation
+      });
+    })
+  }
+
   render() {
     return (
       <div style={style} ref='map'>
         Loading map...
+        {this.renderChildren()}
       </div>
     )
   }

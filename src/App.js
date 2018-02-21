@@ -16,6 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // api stuff
     this.getCoordinates();
   }
 
@@ -23,7 +24,7 @@ class App extends Component {
     navigator.geolocation.getCurrentPosition((position) => {
       var location = {lat: position.coords.latitude, lng: position.coords.longitude}
       this.setState({ location }, () => this.getPostalCode(location))
-      // this.getPostalCode(location)
+      this.getPostalCode(location)
     })
   }
 
@@ -40,17 +41,22 @@ class App extends Component {
   async getPetData(postalCode) {
     var key = process.env.REACT_APP_PETFINDER_KEY
 
-    const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.petfinder.com/pet.find?format=json&key=${key}&location=${postalCode}`)
-    const data = await response.json()
-    this.setState({ data: data.petfinder.pets.pet, loading: false})
+    const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.petfinder.com/shelter.find?format=json&key=${key}&location=${postalCode}`)
+    const json = await response.json()
+    const data = json.petfinder.shelters.shelter
+    // console.log(data)
+    // map over results and return array with necessary info
+
+
+    this.setState({ data: data, loading: false})
   }
 
 
   render() {
-    // console.log(this.state)
+    // console.log('app', this.state.data)
     return (
       <div className="App">
-        <MapContainer location={this.state.location}/>
+        <MapContainer location={this.state.location} data={this.state.data}/>
       </div>
     );
   }
