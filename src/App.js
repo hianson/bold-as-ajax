@@ -7,6 +7,7 @@ class App extends Component {
     super()
     this.state = {
       data: [],
+      animals: [],
       loading: true,
       location: {
         lat: null,
@@ -35,10 +36,10 @@ class App extends Component {
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&result_type=postal_code&key=${key}`)
     const data = await response.json()
     const postalCode = data.results[0].address_components[0].long_name
-    this.getPetData(postalCode)
+    this.getShelterData(postalCode)
   }
 
-  async getPetData(postalCode) {
+  async getShelterData(postalCode) {
     var key = process.env.REACT_APP_PETFINDER_KEY
 
     const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.petfinder.com/shelter.find?format=json&key=${key}&location=${postalCode}`)
@@ -51,13 +52,20 @@ class App extends Component {
     this.setState({ data: data, loading: false})
   }
 
+  setAnimalData(data) {
+    console.log('setting animal data')
+    if (data) {
+      this.setState({ animals: data })
+    }
+  }
+
 
   render() {
-    // console.log('app', this.state.data)
+    console.log('app', this.state.animals)
     return (
       <div style={style}>
-        <MapContainer location={this.state.location} data={this.state.data}/>
-        <ListContainer />
+        <MapContainer setAnimalData={this.setAnimalData.bind(this)} location={this.state.location} data={this.state.data}/>
+        <ListContainer animals={this.state.animals}/>
       </div>
     );
   }
