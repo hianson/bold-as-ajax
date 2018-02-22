@@ -45,12 +45,13 @@ class App extends Component {
     const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.petfinder.com/shelter.find?format=json&key=${key}&location=${postalCode}`)
     const json = await response.json()
     const data = json.petfinder.shelters.shelter
+    // console.log(data)
     this.setState({ data: data, loading: false})
   }
 
   handlePetData(data) {
     if (data) {
-      console.log(data)
+      // console.log(data)
       this.setState({ animals: data })
     }
   }
