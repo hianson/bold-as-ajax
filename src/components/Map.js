@@ -59,8 +59,7 @@ export class Map extends React.Component {
 
 const style = {
   width: '55vw',
-  height: '75vh',
-  // margin: '40px auto 20px auto'
+  height: '80vh'
 }
 
 export default Map;

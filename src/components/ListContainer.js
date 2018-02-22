@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
-import NoPhoto from '../img/no-photo.png'
+import NoPhoto from '../img/no-photo-s.png'
 
 export class ListContainer extends React.Component {
 
@@ -44,7 +44,7 @@ export class ListContainer extends React.Component {
 
 const style = {
   width: '30vw',
-  height: '75vh',
+  height: '40vh',
   background: '#e9ebee',
   overflowY: 'scroll'
 }

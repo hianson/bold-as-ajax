@@ -32,15 +32,7 @@ export class Container extends React.Component {
     const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.petfinder.com/shelter.getPets?format=json&key=${key}&id=${shelterId}`)
     const json = await response.json()
     const data = json.petfinder.pets.pet
-    // console.log(json)
-    // if (data) {
-    //   console.log(data)
-    // }
     this.props.handlePetData(data);
-    // // map over results and return array with necessary info
-    //
-    //
-    // this.setState({ data: data, loading: false})
   }
 
   render() {

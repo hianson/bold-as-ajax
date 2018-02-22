@@ -5,6 +5,11 @@ export class ListItem extends React.Component {
 
   render() {
     // console.log('ListItem', this.props.animal.media)
+    // ,
+    // {this.props.animal},
+    // {this.props.sex},
+    // {this.props.age},
+    // {this.props.size}
     return (
       <li style={listItem}>
         <div style={listItemContainerStyle}>
@@ -12,11 +17,7 @@ export class ListItem extends React.Component {
             <img style={imgStyle} src={this.props.img} alt={'pup'} />
           </div>
           <div style={detailsContainer}>
-            {this.props.name},
-            {this.props.animal},
-            {this.props.sex},
-            {this.props.age},
-            {this.props.size}
+            {this.props.name}
           </div>
         </div>
       </li>
@@ -36,22 +37,27 @@ const listItemContainerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  overflow: 'hidden'
 }
 
 const imgContainer = {
-  // border: '1px solid blue',
+  display: 'flex',
+  alignitems: 'center',
+  justifyContent: 'center',
   height: '50px',
-  width: '75px'
+  width: '75px',
 }
 
 const detailsContainer = {
-  // border: '1px solid red'
+  border: '1px solid red'
 }
 
 const imgStyle = {
-  maxWidth: '100%',
-  maxHeight: '100%'
+  width: 'inherit',
+  height: 'inherit'
+  // maxWidth: '100%',
+  // maxHeight: '100%'
 }
 
 

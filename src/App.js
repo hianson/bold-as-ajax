@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapContainer from './components/MapContainer'
 import ListContainer from './components/ListContainer'
+import DisplayContainer from './components/DisplayContainer'
 
 class App extends Component {
   constructor() {
@@ -61,13 +62,17 @@ class App extends Component {
     return (
       <div style={style}>
         <MapContainer handlePetData={this.handlePetData.bind(this)} location={this.state.location} data={this.state.data}/>
-        <ListContainer animals={this.state.animals}/>
+        <div>
+          <ListContainer animals={this.state.animals}/>
+          <DisplayContainer />
+        </div>
       </div>
     );
   }
 }
 
 const style = {
+  border: '1px solid black',
   display: 'flex',
   justifyContent: 'center',
   margin: '20px'
