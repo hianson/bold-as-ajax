@@ -46,25 +46,21 @@ class App extends Component {
     const json = await response.json()
     const data = json.petfinder.shelters.shelter
     // console.log(data)
-    // map over results and return array with necessary info
-
-
     this.setState({ data: data, loading: false})
   }
 
-  setAnimalData(data) {
-    console.log('setting animal data')
+  handlePetData(data) {
     if (data) {
+      // console.log(data)
       this.setState({ animals: data })
     }
   }
 
 
   render() {
-    console.log('app', this.state.animals)
     return (
       <div style={style}>
-        <MapContainer setAnimalData={this.setAnimalData.bind(this)} location={this.state.location} data={this.state.data}/>
+        <MapContainer handlePetData={this.handlePetData.bind(this)} location={this.state.location} data={this.state.data}/>
         <ListContainer animals={this.state.animals}/>
       </div>
     );
