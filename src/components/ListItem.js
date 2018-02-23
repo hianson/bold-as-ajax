@@ -1,22 +1,15 @@
 import React from 'react';
 
 export class ListItem extends React.Component {
-
-
   render() {
-    // console.log('ListItem', this.props.animal.media)
     return (
-      <li style={listItem}>
+      <li onClick={() => this.props.handleDisplayData(this.props.animal)} style={listItem}>
         <div style={listItemContainerStyle}>
           <div style={imgContainer}>
             <img style={imgStyle} src={this.props.img} alt={'pup'} />
           </div>
           <div style={detailsContainer}>
-            {this.props.name},
-            {this.props.animal},
-            {this.props.sex},
-            {this.props.age},
-            {this.props.size}
+            {this.props.animal.name.$t}
           </div>
         </div>
       </li>
@@ -36,22 +29,29 @@ const listItemContainerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  overflow: 'hidden'
 }
 
 const imgContainer = {
-  // border: '1px solid blue',
+  display: 'flex',
+  alignitems: 'center',
+  justifyContent: 'center',
   height: '50px',
-  width: '75px'
+  width: '75px',
 }
 
 const detailsContainer = {
-  // border: '1px solid red'
+  width: '100%',
+  textAlign: 'center',
+  fontSize: '24px'
 }
 
 const imgStyle = {
-  maxWidth: '100%',
-  maxHeight: '100%'
+  width: 'inherit',
+  height: 'inherit'
+  // maxWidth: '100%',
+  // maxHeight: '100%'
 }
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapContainer from './components/MapContainer'
 import ListContainer from './components/ListContainer'
+import DisplayContainer from './components/DisplayContainer'
 
 class App extends Component {
   constructor() {
@@ -8,16 +9,16 @@ class App extends Component {
     this.state = {
       data: [],
       animals: [],
-      loading: true,
+      display: null,
       location: {
         lat: null,
         lng: null
       }
     }
+    this.handleDisplayData = this.handleDisplayData.bind(this);
   }
 
   componentDidMount() {
-    // api stuff
     this.getCoordinates();
   }
 
@@ -46,28 +47,37 @@ class App extends Component {
     const json = await response.json()
     const data = json.petfinder.shelters.shelter
     // console.log(data)
-    this.setState({ data: data, loading: false})
+    this.setState({ data: data })
   }
 
   handlePetData(data) {
     if (data) {
-      // console.log(data)
       this.setState({ animals: data })
     }
+  }
+
+  handleDisplayData(data) {
+    this.setState({ display: data })
   }
 
 
   render() {
     return (
       <div style={style}>
-        <MapContainer handlePetData={this.handlePetData.bind(this)} location={this.state.location} data={this.state.data}/>
-        <ListContainer animals={this.state.animals}/>
+        <MapContainer handlePetData={this.handlePetData.bind(this)} location={this.state.location} data={this.state.data} />
+        <div>
+          <ListContainer
+            animals={this.state.animals}
+            handleDisplayData={this.handleDisplayData}/>
+          <DisplayContainer display={this.state.display}/>
+        </div>
       </div>
     );
   }
 }
 
 const style = {
+  border: '1px solid black',
   display: 'flex',
   justifyContent: 'center',
   margin: '20px'
