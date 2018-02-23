@@ -3,29 +3,19 @@ import ListItem from './ListItem';
 import NoPhoto from '../img/no-photo-s.png'
 
 export class ListContainer extends React.Component {
-
-  // img, name, breed[s], sex, size
-
-
   renderListItems() {
     const listItems = this.props.animals.map((animal) => {
       var img = NoPhoto
       if (animal.media.photos) {
         img = animal.media.photos.photo[2].$t
       }
-      // console.log(animal.media.photos)
-
-      // if (animal.media)
-      // let img = animal.media.photos.photo[2]
       return(
         <ListItem
           key={animal.id.$t}
-          name={animal.name.$t}
-          animal={animal.animal.$t}
-          sex={animal.sex.$t}
-          age={animal.age.$t}
+          animal={animal}
           img={img}
-          size={animal.size.$t} />
+          handleDisplayData={this.props.handleDisplayData}
+          />
       )
     })
     return(
